@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="./jquery-3.6.2.min.js"></script>
+</head>
+<style>
+
+    body{
+        overflow: hidden;
+        justify-content: center;
+    }
+
+    .MainContainer{
+        position: relative;
+        border: 2px solid rgba(0, 0, 0, 0.397);
+        border-radius: 20px;
+        height: 95vh;
+        width: 98vw;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .NavScrollContainer{
+        position: relative;
+        border-radius: 20px;
+        height: 80%;
+        width: 25%; 
+        background-color: rgba(240, 255, 255, 0.11);
+        display: flex;
+        flex-direction: column;
+        overflow: scroll;
+        overflow-x: hidden;
+        top: 50%;
+        transform: translateY(-50%);
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+    .NavScrollContainer::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .ContentContainer{
+        position: relative;
+        border: 2px solid rgba(70, 156, 172, 0.397);
+        border-radius: 20px;
+        height: 100%;
+        width: 75%; 
+    }
+
+    button{
+        position: relative;
+        width: 100%;
+        text-align: left;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        font-size: 15px;
+        left: 0px;
+        border-radius: 30px;
+        border: 2px solid ghostwhite;
+        transition: all 0.3s ease-in-out;
+        background: rgba(255, 255, 255, 0.041)
+    }
+    
+    /* button:hover{
+        left: 50px;
+    } */
+
+    #button1{
+        position: relative;
+        background-color: red;
+        margin-top: 100%;
+    }
+
+    
+    #buttonlast{
+        position: relative;
+        background-color: red;
+        margin-bottom: 100%;
+    }
+
+    #abuttonlast{
+        position: relative;
+        background-color: red;
+        margin-bottom: 100%;
+    }
+
+    
+</style>
+
+<body>
+    <div class="MainContainer">
+        <div class="NavScrollContainer" id="NavScrollContainer">
+            <button id="button1">JAVASCRIPT</button>
+            <button id="button2">JQUERY</button>
+            <button id="button3">toggling</button>
+            <button id="button4">button 4</button>
+            <button id="button5">button 5</button>
+            <button id="button6">HTML</button>
+            <button id="button7">class and IDS</button>
+            <button id="button8">POSITIONING</button>
+            <button id="button9">STYLES</button>
+            <button id="button10" id="button">button 10</button>
+            <button id="button11">button 11</button>
+            <button id="button12">button 12</button>
+            <button id="button13">button 13</button>
+            <button id="button14">button 14</button>
+            <button id="button15">button 15</button>
+            <button id="button16">button 16</button>
+            <button id="button17">button 17</button>
+            <button id="button18">button 18</button>
+            <button id="buttonlast">button 19</button>
+            <button id="abutton1">button 1</button>
+            <button id="abutton2">button 2</button>
+            <button id="abutton3">button 3</button>
+            <button id="abutton4">button 4</button>
+            <button id="abutton5">button 5</button>
+            <button id="abutton6">button 6</button>
+            <button id="abutton7">button 7</button>
+            <button id="abutton8">button 8</button>
+            <button id="abutton9">button 9</button>
+            <button id="abutton10" id="button">button 10</button>
+            <button id="abutton11">button 11</button>
+            <button id="abutton12">button 12</button>
+            <button id="abutton13">button 13</button>
+            <button id="abutton14">button 14</button>
+            <button id="abutton15">button 15</button>
+            <button id="abutton16">button 16</button>
+            <button id="abutton17">button 17</button>
+            <button id="abutton18">button 18</button>
+            <button id="abuttonlast">button 19</button>
+        </div>
+        <div class="ContentContainer"></div>
+    </div>
+
+<script>
+    window.onscroll = function() {myFunction()};
+
+    const button = document.getElementById('button');
+    const buttonfirst = document.getElementById('button1');
+    const buttonlast = document.getElementById('button18');
+    
+    const myscroll = document.getElementById('NavScrollContainer');
+
+    console.log(myscroll.offsetWidth + "PX div width");
+    
+    const TotalScrollHeight = myscroll.scrollHeight;
+    const DivScrollHeight = myscroll.offsetHeight;
+    // const ScrollPosition = myscroll.scrollTop + (DivScrollHeight/2);
+    
+    const descendents = myscroll.getElementsByTagName('*');
+    const try1 = descendents[0];
+
+    
+    console.log(TotalScrollHeight + " TOTAL HEIGHT");
+    console.log(DivScrollHeight + " DIV HEIGHT");
+   
+    
+
+    myscroll.onscroll = function (e) {
+
+        var ScrollPosition = myscroll.scrollTop + (DivScrollHeight/2);
+        
+        console.log(ScrollPosition + " POS IN TOTAL HEIGHT");
+
+        var scroll_minrange = ScrollPosition - 200;
+        var scroll_maxrange = ScrollPosition + 20;
+
+        for (i = 0; i < descendents.length; ++i) {
+            curbutton = descendents[i];
+            var buttonLocation = curbutton.offsetTop;
+            if (buttonLocation > scroll_minrange && buttonLocation < scroll_maxrange) {
+                if ($("#"+curbutton.id).css("left") === "0px"){
+                    curbutton.style.fontSize = "30px";
+                    curbutton.style.left = "50px";
+                }
+            }else{
+                if ($("#"+curbutton.id).css("left") === "50px"){
+                    curbutton.style.fontSize = "15px";
+                    curbutton.style.left = "0px";
+                } 
+            }
+        }
+
+        
+        
+        // console.log(button.offsetTop + "BUTTON");
+        // var ancestor = document.getElementById('id'),
+        // descendents = ancestor.getElementsByTagName('*');
+    };
+
+    </script>
+</body>
